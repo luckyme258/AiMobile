@@ -2,11 +2,13 @@
 
 <img src="src/assets/pocketpal-dark-v2.png" alt="PocketPal AI logo" width="120" />
 
-# PocketPal AI
+# PocketPal AI — Local Keep-Alive Fork
 
 **A private AI assistant that runs entirely on your phone.**
 
 Chat with language models, give them a voice, and let them use tools — all on-device. No account, no cloud, no internet required.
+
+> **This repository is a modified fork** of the upstream [PocketPal AI](https://github.com/a-ghorbani/pocketpal-ai) (tag v1.24.0). Upstream source and copyright remain under the upstream MIT License; see [License](#license).
 
 <a href="https://pocketpal.dev/"><strong>pocketpal.dev</strong></a> ·
 <a href="#get-the-app">Get the app</a> ·
@@ -29,6 +31,15 @@ Chat with language models, give them a voice, and let them use tools — all on-
 
 ---
 
+## What this fork changes
+
+This fork starts from upstream PocketPal AI v1.24.0 and applies two local changes aimed at keeping the on-device model and local API reachable in the background. Everything else remains upstream behavior.
+
+- **Model stays loaded when the app backgrounds** — upstream auto-releases (unloads) the model when the app goes to the background; this fork keeps it loaded (`useAutoRelease` default turned off) instead of unloading automatically.
+- **Foreground-service keep-alive for the local API** — when the local API listener starts, a native Android foreground service is raised to keep the endpoint alive; it is stopped when listening fails or the server stops. The service declares `FOREGROUND_SERVICE_TYPE_DATA_SYNC` and shows a small persistent notification while active.
+
+> These are local modifications only. The upstream app itself, model engine, UI, voices, and all other features are unchanged from PocketPal AI v1.24.0.
+
 ## Why PocketPal AI?
 
 Most AI apps are a thin window onto someone else's server — every message you type gets shipped off, logged, and analyzed somewhere you can't see. PocketPal flips that around: **the AI lives on your phone, and your conversations stay on it unless you choose an online feature.**
@@ -36,7 +47,7 @@ Most AI apps are a thin window onto someone else's server — every message you 
 - **🔒 Private by default** — every prompt, response, and document stays on your device unless you turn on an online feature such as web search or a remote server.
 - **✈️ Works offline** — download a model once and it just works, with no connection and no account. On a plane, on a trail, anywhere.
 - **📱 Runs on hardware you already own** — real language models, voices, and tools, tuned to make the most of your phone's CPU, GPU, and NPU.
-- **🆓 Free and open source** — chat, models, voices and tools are free, with no account. The App Store and Google Play builds offer an optional one-time **PocketPal Plus** purchase for hands-free voice and the local API server; builds from source include it, and so does the APK on GitHub Releases from the release after v1.23.0. MIT-licensed.
+- **🆓 Free and open source** — chat, models, voices and tools are free, with no account. The App Store and Google Play builds offer an optional one-time **PocketPal Plus** purchase for hands-free voice and the local API server; builds from source include it, and so does the APK on GitHub Releases from the release after v1.23.0. Upstream is MIT-licensed; this fork's modifications are under GPL-3.0 (see [License](#license)).
 
 > **Privacy note:** Your chats and documents leave your device only through features you turn on: web search and page reading, a remote server, or a system voice your phone runs online. The app's other network use (model and voice downloads, PalsHub and purchases, device-compatibility rules from the jsDelivr CDN at launch, the opt-in benchmark leaderboard, and feedback or reports you submit) never attaches your chats.
 
