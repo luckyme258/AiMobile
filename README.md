@@ -10,22 +10,13 @@ Chat with language models, give them a voice, and let them use tools — all on-
 
 > **This repository is a modified fork** of the upstream [PocketPal AI](https://github.com/a-ghorbani/pocketpal-ai) (tag v1.24.0). Upstream source and copyright remain under the upstream MIT License; see [License](#license).
 
-<a href="https://pocketpal.dev/"><strong>pocketpal.dev</strong></a> ·
 <a href="#get-the-app">Get the app</a> ·
-<a href="https://pocketpal.dev/leaderboard">Leaderboard</a> ·
-<a href="https://palshub.ai/">PalsHub</a> ·
-<a href="https://github.com/a-ghorbani/pocketpal-ai/discussions">Discussions</a>
+<a href="https://github.com/a-ghorbani/pocketpal-ai/discussions">Upstream Discussions</a>
 
 <br/>
 
-[![App Store](https://img.shields.io/badge/App_Store-Download-0D96F6?logo=apple&logoColor=white)](https://apps.apple.com/us/app/pocketpal-ai/id6502579498)
-[![Google Play](https://img.shields.io/badge/Google_Play-Get_it-414141?logo=googleplay&logoColor=white)](https://play.google.com/store/apps/details?id=com.pocketpalai)
-
-[![Latest release](https://img.shields.io/github/v/release/a-ghorbani/pocketpal-ai?sort=semver)](https://github.com/a-ghorbani/pocketpal-ai/releases)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE-GPL3)
-[![Stars](https://img.shields.io/github/stars/a-ghorbani/pocketpal-ai)](https://github.com/a-ghorbani/pocketpal-ai/stargazers)
-[![Open issues](https://img.shields.io/github/issues/a-ghorbani/pocketpal-ai)](https://github.com/a-ghorbani/pocketpal-ai/issues)
-[![Sponsor](https://img.shields.io/github/sponsors/a-ghorbani?logo=githubsponsors)](https://github.com/sponsors/a-ghorbani)
+[![Upstream](https://img.shields.io/badge/upstream-pocketpal--ai-orange)](https://github.com/a-ghorbani/pocketpal-ai)
 
 </div>
 
@@ -52,7 +43,7 @@ Most AI apps are a thin window onto someone else's server — every message you 
 - **🔒 Private by default** — every prompt, response, and document stays on your device unless you turn on an online feature such as web search or a remote server.
 - **✈️ Works offline** — download a model once and it just works, with no connection and no account. On a plane, on a trail, anywhere.
 - **📱 Runs on hardware you already own** — real language models, voices, and tools, tuned to make the most of your phone's CPU, GPU, and NPU.
-- **🆓 Free and open source** — chat, models, voices and tools are free, with no account. The App Store and Google Play builds offer an optional one-time **PocketPal Plus** purchase for hands-free voice and the local API server; builds from source include it, and so does the APK on GitHub Releases from the release after v1.23.0. Upstream is MIT-licensed; this fork's modifications are under GPL-3.0 (see [License](#license)).
+- **🆓 Free and open source** — chat, models, voices and tools are free, with no account. Upstream is MIT-licensed; this fork's modifications are under GPL-3.0 (see [License](#license)).
 
 > **Privacy note:** Your chats and documents leave your device only through features you turn on: web search and page reading, a remote server, or a system voice your phone runs online. The app's other network use (model and voice downloads, PalsHub and purchases, device-compatibility rules from the jsDelivr CDN at launch, the opt-in benchmark leaderboard, and feedback or reports you submit) never attaches your chats.
 
@@ -74,8 +65,8 @@ Most AI apps are a thin window onto someone else's server — every message you 
 - **🗣️ Text-to-speech** — give your assistant a voice with on-device neural voices (Kokoro, Kitten, Supertonic, and Phonon on supported devices) that synthesize speech on your phone, or your phone's system voices.
 - **🎙️ Voice input** — dictate messages with on-device Whisper speech recognition (whisper.cpp).
 - **🎭 Pals** — create personalized assistants with their own model, system prompt, and personality (Assistant and Roleplay types).
-- **🛍️ [PalsHub](https://palshub.ai/)** — discover and install community Pals, including premium ones via in-app purchase.
-- **✨ PocketPal Plus** — an optional one-time purchase in the App Store and Google Play builds that adds hands-free voice conversation and a local API server. Builds from source, and the APK on GitHub Releases from the release after v1.23.0, include every Plus feature with no purchase.
+- **🛍️ PalsHub** — upstream community Pals marketplace; this fork does not maintain that integration.
+- **✨ Local API & voice** — the source build includes the local API server and hands-free voice features that upstream offers as optional Plus purchases.
 - **🛠️ Talents & tools** — let capable Pals call built-in tools (calculator, date/time, rich HTML rendering, opt-in web search and page reading) inside a tool-use loop.
 - **📥 Hugging Face integration** — search and download GGUF models, including gated ones, directly from the HF Hub with your access token.
 - **📊 Benchmarking** — measure tokens/sec and memory, and optionally compare on the [AI Phone Leaderboard](https://pocketpal.dev/leaderboard).
@@ -84,14 +75,11 @@ Most AI apps are a thin window onto someone else's server — every message you 
 
 ## Get the app
 
-| Platform | |
-| --- | --- |
-| **iOS / iPadOS** | [![Download on the App Store](https://img.shields.io/badge/App_Store-Download-0D96F6?logo=apple&logoColor=white)](https://apps.apple.com/us/app/pocketpal-ai/id6502579498) |
-| **Android** | [![Get it on Google Play](https://img.shields.io/badge/Google_Play-Get_it-414141?logo=googleplay&logoColor=white)](https://play.google.com/store/apps/details?id=com.pocketpalai) |
+This fork does not publish to app stores. Build the Android APK from source (`cd android && ./gradlew assembleProdDebug`), or download a prebuilt APK from [Releases](../../releases) once published.
 
 **Three steps to your first chat:**
 
-1. **Install** PocketPal from the App Store or Google Play.
+1. **Install** the APK on your Android device.
 2. **Download a model** — tap the menu (☰) → **Models**, pick one that fits your phone, and download (or add one from Hugging Face).
 3. **Load it and start chatting** — that's it, you're running AI fully offline.
 
@@ -150,7 +138,7 @@ Create personalized assistants:
 - **Assistant Pal** — pick a default model, set a system prompt (write it yourself or have the app generate one), and customize the chat input color.
 - **Roleplay Pal** — everything above, plus location, the AI's role, and other contextual parameters.
 
-Switch personas with the Pal picker on the chat page. Browse **[PalsHub](https://palshub.ai/)** in-app to discover community Pals, including premium ones via in-app purchase.
+Switch personas with the Pal picker on the chat page.
 
 <img src="assets/images and logos/Pals.png" alt="Assistant Pal" width="100%">
 <p><em>Creating a cocktail-recipe assistant</em></p>
@@ -330,10 +318,8 @@ Have an idea or found a bug? [Open an issue](https://github.com/a-ghorbani/pocke
 
 ## Community & support
 
-- 💬 **Questions & ideas** — [GitHub Discussions](https://github.com/a-ghorbani/pocketpal-ai/discussions)
-- 🐛 **Bugs & requests** — [GitHub Issues](https://github.com/a-ghorbani/pocketpal-ai/issues/new/choose)
-- 🌐 **Website** — [pocketpal.dev](https://pocketpal.dev/)
-- ❤️ **Support development** — PocketPal is free and ad-free; [sponsoring](https://github.com/sponsors/a-ghorbani) helps keep it that way.
+- 💬 **Upstream discussions** — [a-ghorbani/pocketpal-ai Discussions](https://github.com/a-ghorbani/pocketpal-ai/discussions)
+- 🐛 **Upstream issues** — [a-ghorbani/pocketpal-ai Issues](https://github.com/a-ghorbani/pocketpal-ai/issues/new/choose)
 
 ## License
 
