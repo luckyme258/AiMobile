@@ -70,14 +70,9 @@ function invalid(message: string): never {
 }
 
 function rejectUnsupported(body: Json) {
-  if (
-    Array.isArray(body.tools) ? body.tools.length > 0 : isPresent(body.tools)
-  ) {
-    unsupported('tools');
-  }
-  if (isPresent(body.tool_choice) && body.tool_choice !== 'none') {
-    unsupported('tool_choice');
-  }
+  // SPIKE: tools / tool_choice are now passed through to the engine for the
+  // minimal tool-calling closed-loop test. Image parts, n>1 and logprobs stay
+  // rejected. Revert this block after the spike.
   if (isPresent(body.n) && body.n !== 1) {
     unsupported('n');
   }
@@ -263,7 +258,10 @@ export function newCompletionIds(
   return {id: `chatcmpl-${random}`, created: Math.floor(now / 1000), model};
 }
 
-export function finishReason(result: CompletionResult): 'length' | 'stop' {
+export function finishReason(result: CompletionResult): 'length' | 'stop' | 'tool_calls' {
+  if (result.tool_calls && result.tool_calls.length > 0) {
+    return 'tool_calls';
+  }
   return result.stopped_limit || result.context_full ? 'length' : 'stop';
 }
 
@@ -278,6 +276,16 @@ export function usageOf(result: CompletionResult) {
 }
 
 export function toCompletion(result: CompletionResult, ids: CompletionIds) {
+  const message: Record<string, unknown> = {
+    role: 'assistant',
+    content: result.content ?? result.text,
+  };
+  if (result.reasoning_content) {
+    message.reasoning_content = result.reasoning_content;
+  }
+  if (result.tool_calls && result.tool_calls.length > 0) {
+    message.tool_calls = result.tool_calls;
+  }
   return {
     id: ids.id,
     object: 'chat.completion',
@@ -286,13 +294,7 @@ export function toCompletion(result: CompletionResult, ids: CompletionIds) {
     choices: [
       {
         index: 0,
-        message: {
-          role: 'assistant',
-          content: result.content ?? result.text,
-          ...(result.reasoning_content
-            ? {reasoning_content: result.reasoning_content}
-            : {}),
-        },
+        message,
         finish_reason: finishReason(result),
       },
     ],
@@ -304,6 +306,7 @@ export interface ChunkDelta {
   role?: 'assistant';
   content?: string;
   reasoning_content?: string;
+  tool_calls?: CompletionResult['tool_calls'];
 }
 
 export function toChunk(delta: ChunkDelta, ids: CompletionIds) {

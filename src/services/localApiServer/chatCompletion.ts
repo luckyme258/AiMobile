@@ -61,14 +61,13 @@ const internalError = (error: unknown): WireError => ({
   code: 'internal_error',
 });
 
-/** The global user layer of the chat settings, without tools. */
+/** The global user layer of the chat settings, tools now preserved for the spike. */
 export function serverBaseParams(): CompletionParams {
   const base: CompletionParams = {
     ...defaultCompletionSettings,
     ...toJS(chatSessionStore.newChatCompletionSettings),
   };
-  delete base.tools;
-  delete base.tool_choice;
+  // SPIKE: do not strip tools/tool_choice so the engine receives them.
   return base;
 }
 
@@ -109,10 +108,11 @@ async function completeStreaming(
   const sent = {content: '', reasoning_content: ''};
   const unsent = (field: keyof typeof sent, text: string | undefined) =>
     text?.startsWith(sent[field]) ? text.slice(sent[field].length) : '';
-  const sendDeltas = (snapshot: Partial<typeof sent>) => {
+  const sendDeltas = (snapshot: Partial<typeof sent> & {tool_calls?: CompletionStreamData['tool_calls']}) => {
     const content = unsent('content', snapshot.content);
     const reasoning = unsent('reasoning_content', snapshot.reasoning_content);
-    if (!content && !reasoning) {
+    const toolCalls = snapshot.tool_calls;
+    if (!content && !reasoning && !(toolCalls && toolCalls.length > 0)) {
       return;
     }
     const delta: ChunkDelta = roleSent ? {} : {role: 'assistant'};
@@ -123,6 +123,9 @@ async function completeStreaming(
     if (reasoning) {
       delta.reasoning_content = reasoning;
       sent.reasoning_content += reasoning;
+    }
+    if (toolCalls && toolCalls.length > 0) {
+      delta.tool_calls = toolCalls;
     }
     roleSent = true;
     send(toChunk(delta, ids));
