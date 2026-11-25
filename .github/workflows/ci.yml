@@ -393,9 +393,11 @@ jobs:
 
   # Job for iOS build
   build-ios:
+    # Disabled: this fork maintains Android only; macOS runner is skipped to save CI minutes/queue.
+    if: false
     runs-on: macos-26  # Keep CI on the same Xcode major as the release workflow
     needs: [build-and-test, detect-changes]
-    if: needs.detect-changes.outputs.translation_only != 'true'
+    # if: needs.detect-changes.outputs.translation_only != 'true'
     env:
       NODE_OPTIONS: '--max-old-space-size=8192'
     steps:
