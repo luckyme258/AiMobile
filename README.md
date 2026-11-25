@@ -40,6 +40,11 @@ This fork starts from upstream PocketPal AI v1.24.0 and applies two local change
 
 > These are local modifications only. The upstream app itself, model engine, UI, voices, and all other features are unchanged from PocketPal AI v1.24.0.
 
+## Build targets & languages
+
+- **Build output:** this fork produces an **Android APK** (`assembleProdDebug`); no iOS build target is maintained here.
+- **Languages:** the UI supports **Chinese and English**, switchable in-app; other locale files inherited from upstream are not actively maintained in this fork.
+
 ## Why PocketPal AI?
 
 Most AI apps are a thin window onto someone else's server — every message you type gets shipped off, logged, and analyzed somewhere you can't see. PocketPal flips that around: **the AI lives on your phone, and your conversations stay on it unless you choose an online feature.**
