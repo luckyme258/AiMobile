@@ -1,21 +1,55 @@
-MIT License
+# License
 
-Copyright (c) 2024 Asghar Ghorbani
+## A. Upstream (PocketPal AI) — MIT License
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+This project is a modified fork of [PocketPal AI](https://github.com/a-ghorbani/pocketpal-ai),
+based on source tag **v1.24.0**. The upstream code is distributed under the MIT License.
+The following copyright notice and permission notice are retained from the upstream
+distribution, as required by the MIT terms:
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+> MIT License
+>
+> Copyright (c) 2024 Asghar Ghorbani
+>
+> Permission is hereby granted, free of charge, to any person obtaining a copy
+> of this software and associated documentation files (the "Software"), to deal
+> in the Software without restriction, including without limitation the rights
+> to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+> copies of the Software, and to permit persons to whom the Software is
+> furnished to do so, subject to the following conditions:
+>
+> The above copyright notice and this permission notice shall be included in all
+> copies or substantial portions of the Software.
+>
+> THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+> IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+> FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+> AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+> LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+> OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+> SOFTWARE.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+## B. Modifications made in this repository — GNU GPL v3
+
+The changes made in this repository (see the list below) are licensed under the
+**GNU General Public License, Version 3 (GPL-3.0)**. The full text of the
+GPL-3.0 License is provided in [LICENSE-GPL3](LICENSE-GPL3).
+
+- **Disable automatic model release in the background** (`useAutoRelease` default
+  changed from `true` to `false`).
+- **Android foreground-service keep-alive** for the local API listener: a native
+  foreground service is started when the local API server starts listening and
+  stopped on failure/stop, to keep the local API endpoint alive while the screen
+  is on.
+
+## C. Notice on combined work
+
+The work in this repository combines upstream MIT-licensed code with these
+modifications. The MIT→GPL combination is license-compatible: the upstream
+copyright and license terms above remain in force for the upstream portions,
+while the repository as a whole, and any derivative work distributed from it,
+is made available under the GPL-3.0 terms referenced above.
+
+This program is distributed in the hope that it will be useful, but WITHOUT ANY
+WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A
+PARTICULAR PURPOSE. See the GNU General Public License for more details.

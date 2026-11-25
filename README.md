@@ -20,7 +20,7 @@ Chat with language models, give them a voice, and let them use tools — all on-
 [![Google Play](https://img.shields.io/badge/Google_Play-Get_it-414141?logo=googleplay&logoColor=white)](https://play.google.com/store/apps/details?id=com.pocketpalai)
 
 [![Latest release](https://img.shields.io/github/v/release/a-ghorbani/pocketpal-ai?sort=semver)](https://github.com/a-ghorbani/pocketpal-ai/releases)
-[![License: MIT](https://img.shields.io/github/license/a-ghorbani/pocketpal-ai)](LICENSE)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE-GPL3)
 [![Stars](https://img.shields.io/github/stars/a-ghorbani/pocketpal-ai)](https://github.com/a-ghorbani/pocketpal-ai/stargazers)
 [![Open issues](https://img.shields.io/github/issues/a-ghorbani/pocketpal-ai)](https://github.com/a-ghorbani/pocketpal-ai/issues)
 [![Sponsor](https://img.shields.io/github/sponsors/a-ghorbani?logo=githubsponsors)](https://github.com/sponsors/a-ghorbani)
@@ -321,7 +321,14 @@ Have an idea or found a bug? [Open an issue](https://github.com/a-ghorbani/pocke
 
 ## License
 
-Licensed under the [MIT License](LICENSE).
+> **Fork note:** This repository is a modified fork of [PocketPal AI](https://github.com/a-ghorbani/pocketpal-ai) (upstream tag **v1.24.0**, MIT). The upstream MIT copyright and license are retained in [LICENSE](LICENSE). The local modifications in this fork are distributed under the **GNU GPL v3**; see [LICENSE-GPL3](LICENSE-GPL3) for the full license text.
+
+Local changes relative to upstream:
+
+- Disabled the automatic release/unload of the model when the app goes to the background.
+- Added an Android foreground-service keep-alive that keeps the local API listener alive (started when listening, stopped on failure/stop).
+
+Upstream portions remain under the upstream MIT License; this combined work as a whole is released under GPL-3.0.
 
 ## Acknowledgements
 
