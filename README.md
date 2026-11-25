@@ -69,7 +69,7 @@ Most AI apps are a thin window onto someone else's server — every message you 
 - **✨ Local API & voice** — the source build includes the local API server and hands-free voice features that upstream offers as optional Plus purchases.
 - **🛠️ Talents & tools** — let capable Pals call built-in tools (calculator, date/time, rich HTML rendering, opt-in web search and page reading) inside a tool-use loop.
 - **📥 Hugging Face integration** — search and download GGUF models, including gated ones, directly from the HF Hub with your access token.
-- **📊 Benchmarking** — measure tokens/sec and memory, and optionally compare on the [AI Phone Leaderboard](https://pocketpal.dev/leaderboard).
+- **📊 Benchmarking** — measure tokens/sec and memory, and compare against other on-device runs.
 - **⚡ Hardware acceleration** — CPU, GPU (Metal on iOS, OpenCL/Adreno on Android), and NPU (Qualcomm Hexagon) inference paths, with graceful fallback.
 - **🌍 Localized** — available in 16 languages, on phones and tablets, including full iPad support.
 
@@ -152,7 +152,6 @@ Switch personas with the Pal picker on the chat page.
 1. Open the **Benchmark** page.
 2. Run performance tests to compare speed and efficiency across models.
 3. Review tokens/sec and memory usage.
-4. Optionally share your results to the [AI Phone Leaderboard](https://pocketpal.dev/leaderboard).
 
 <img src="assets/images and logos/Benchmark.png" alt="Benchmark" width="100%">
 </details>
